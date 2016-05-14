@@ -1,0 +1,25 @@
+version: '2'
+
+services:
+  zeo:
+    build: ./plone
+    command: ["/plone/bin/zeo", "fg"]
+    environment:
+      - ZEO_PORT=8100
+    expose:
+      - "8100"
+#    volumes:
+#      - "/plone/var/filestorage"
+#      - "/plone/var/blobstorage"
+
+  plone:
+    build: ./plone
+    command: ["/plone/bin/instance", "fg"]
+    environment:
+      - ZEO_HOST=zeo
+      - ZEO_PORT=8100
+    ports:
+      - "9080:8080"
+
+  sandbox:
+    build: ./sandbox
