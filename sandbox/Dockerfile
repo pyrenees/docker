@@ -10,12 +10,12 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /plone
 
 # Get code
-RUN git clone https://github.com/pyrenees/sandbox/ .
-RUN wget https://bootstrap.pypa.io/bootstrap-buildout.py
+RUN git clone https://github.com/pyrenees/sandbox.git .
 
 # Buildout
-RUN python bootstrap-buildout.py
-RUN ./bin/buildout -v
+RUN wget https://bootstrap.pypa.io/bootstrap-buildout.py \
+ && python bootstrap-buildout.py \
+ && ./bin/buildout -v
 
 # Expose
 
