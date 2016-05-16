@@ -14,6 +14,7 @@ services:
 
   plone:
     build: ./plone
+    image: pyrenees_plone
     command: ["/plone/bin/instance", "fg"]
     environment:
       - ZEO_HOST=zeo
@@ -23,3 +24,8 @@ services:
 
   sandbox:
     build: ./sandbox
+
+  restapi:
+    build: ./restapi
+    depends_on:
+      - plone
