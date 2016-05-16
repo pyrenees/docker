@@ -28,8 +28,7 @@ RUN python bootstrap.py \
  && ./bin/buildout -c zeo.cfg -v
 
 # Volumes
-#VOLUME /plone/var/filestorage
-#VOLUME /plone/var/blobstorage
+VOLUME /plone/var
 
 # Expose
 EXPOSE 8080

@@ -4,7 +4,6 @@ FROM python:3.5
 RUN apt-get update && apt-get install -y \
   gcc \
   git \
-  wget \
  && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /plone
@@ -13,8 +12,7 @@ WORKDIR /plone
 RUN git clone https://github.com/pyrenees/sandbox.git .
 
 # Buildout
-RUN wget https://bootstrap.pypa.io/bootstrap-buildout.py \
- && python bootstrap-buildout.py \
+ RUN python bootstrap.py \
  && ./bin/buildout -v
 
 # Expose
