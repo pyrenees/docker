@@ -8,9 +8,6 @@ services:
       - ZEO_PORT=8100
     expose:
       - "8100"
-#    volumes:
-#      - "/plone/var/filestorage"
-#      - "/plone/var/blobstorage"
 
   plone:
     build: ./plone
@@ -22,9 +19,6 @@ services:
     ports:
       - "9080:8080"
 
-  sandbox:
-    build: ./sandbox
-
   restapi:
     build: ./restapi
     depends_on:
@@ -32,8 +26,4 @@ services:
     ports:
       - "9081:8080"
 
-  ploneuniversal:
-    build: ./ploneuniversal
-    ports:
-      - "3000:3000"
 

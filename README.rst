@@ -2,13 +2,16 @@
 Docker Barcelona 2016
 =====================
 
-Building:
+Building `ploneNG.yml`:
+
+* sandbox
+* ploneuniversal
+
+Building `current_plone.yml`:
 
 * zeo
 * plone
-* sandbox
 * restapi (plone + plone.restapi)
-* ploneuniversal
 
   
 Build & run
@@ -16,12 +19,12 @@ Build & run
 
 Quick start: 
 
-* `docker-compose -f docker-compose.yml up`
+* `docker-compose -f ploneNG.yml up`
 
 Or two steps:
 
-1. Build: `docker-compose -f docker-compose.yml build`
-2. Run: `docker-compose -f docker-compose.yml up`
+1. Build: `docker-compose -f ploneNG.yml build`
+2. Run: `docker-compose -f ploneNG.yml up`
 
 
 Rebuild without cache

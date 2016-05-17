@@ -12,7 +12,7 @@ WORKDIR /plone
 RUN git clone https://github.com/pyrenees/sandbox.git .
 
 # Buildout
- RUN python bootstrap.py \
+RUN python bootstrap-buildout.py \
  && ./bin/buildout -v
 
 # Expose
