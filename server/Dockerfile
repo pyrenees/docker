@@ -8,7 +8,8 @@ RUN tar xzvf /tmp/master.tar.gz \
  && mv /tmp/plone.server-master /plone
 
 # Manual Configure
-RUN sed -i 's/localhost:6542/oauth:6543/' /plone/src/plone.server/plone/server/auth/oauth.json
+RUN sed -i 's/localhost:6542/oauth:6543/' /plone/src/plone.server/plone/server/auth/oauth.json \
+ && sed -i 's/localhost:9200/elastic:9200/' /plone/src/plone.server/plone/server/search/elasticsearch.json
 
 # Buildout
 WORKDIR /plone
