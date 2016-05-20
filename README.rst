@@ -4,8 +4,8 @@ Docker Barcelona 2016
 
 Building `ploneNG.yml`:
 
-* sandbox
-* ploneuniversal
+* server
+* client
 
 Building `current_plone.yml`:
 
@@ -46,9 +46,12 @@ Published ports
 
 By default the following ports are published:
 
+* server at 8080
+* client at 3000
+
+
 * plone at 9080
 * restapi at 9081
-* front at 3000
     
   
  

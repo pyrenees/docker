@@ -1,11 +1,13 @@
 version: '2'
 
 services:
-  sandbox:
-    build: ./sandbox
+  server:
+    build: ./server
+    ports:
+      - "9080:8080"
 
-  ploneuniversal:
-    build: ./ploneuniversal
+  client:
+    build: ./client
     ports:
       - "3000:3000"
 
