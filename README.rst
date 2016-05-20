@@ -6,6 +6,7 @@ Building `ploneNG.yml`:
 
 * server
 * client
+* oauth (+ldap, +redis)
 
 Building `current_plone.yml`:
 
@@ -48,6 +49,7 @@ By default the following ports are published:
 
 * server at 8080
 * client at 3000
+* oauth at 6543
 
 
 * plone at 9080

@@ -1,0 +1,32 @@
+version: '2'
+
+services:
+
+  oauth:
+    build: .
+    environment:
+    - JWTSECRET=secret
+    - LDAP_PROFILE=["person","inetOrgPerson"]
+    - LDAP_USER_FILTER=mail={username},ou=Users,dc=plone,dc=com
+    - LDAP_ROOT_DN=uid=admin,ou=system
+    - LDAP_ROOT_PW=secret
+    - LDAP_BASE_DN=dc=plone,dc=com
+    restart: always
+ 
+  redis:
+    image: redis
+    volumes:
+    - /data
+    expose:
+    - "6379"  
+    restart: always
+  ldap:
+    image: iskra/apacheds
+    volumes:
+    - /data
+    - ./ldap-bootstrap:/bootstrap
+    expose:
+    - "10389"
+    environment:
+    - BOOTSTRAP_FILE=/bootstrap/demo.ldif
+    restart: always

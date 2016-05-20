@@ -7,6 +7,9 @@ RUN tar xzvf /tmp/master.tar.gz \
  && rm /tmp/master.tar.gz \
  && mv /tmp/plone.server-master /plone
 
+# Manual Configure
+RUN sed -i 's/localhost:6542/oauth:6543/' /plone/src/plone.server/plone/server/auth/oauth.json
+
 # Buildout
 WORKDIR /plone
 RUN python bootstrap-buildout.py \
