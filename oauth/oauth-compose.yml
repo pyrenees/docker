@@ -21,7 +21,7 @@ services:
     - "6379"  
     restart: always
   ldap:
-    image: iskra/apacheds
+    image: greggigon/apacheds
     volumes:
     - /data
     - ./ldap-bootstrap:/bootstrap
