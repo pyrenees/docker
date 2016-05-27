@@ -42,7 +42,7 @@ services:
     - oauth
     - elasticsearch
     volumes:
-    - ./data:/app/data
+    - ./volumes/plone:/app/data
     ports:
     - "8080:8080"
     environment:
@@ -50,10 +50,3 @@ services:
     - JWTALGORITHM=HS256
     - CLIENTID=plone
     - CLIENTPASSWORD=plone
-  ploneclient:
-    image: plone/plone_client:latest
-    depends_on:
-    - oauth
-    - ploneserver
-    ports:
-    - "3000:3000"

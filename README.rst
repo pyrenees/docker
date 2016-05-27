@@ -2,11 +2,7 @@
 Docker Barcelona 2016
 =====================
 
-Building `ploneNG.yml`:
-
-* server
-* client
-* oauth (+ldap, +redis)
+ploneNG images are build on Docker HUB
 
 Building `current_plone.yml`:
 
@@ -15,17 +11,18 @@ Building `current_plone.yml`:
 * restapi (plone + plone.restapi)
 
   
-Build & run
+Run PloneNG
 ===========
 
 Quick start: 
 
 * `docker-compose -f ploneNG.yml up`
 
-Or two steps:
+That exposes to localhost 6543 for oauth service and 8080 for plone service
 
-1. Build: `docker-compose -f ploneNG.yml build`
-2. Run: `docker-compose -f ploneNG.yml up`
+Get testing tokens for API:
+
+* `python get_token.py http://localhost:6543`
 
 
 Rebuild without cache
@@ -54,8 +51,6 @@ By default the following ports are published:
 
 * plone at 9080
 * restapi at 9081
-    
-  
  
 To change the published ports, change accordingly in
 `docker-compose.yml`, e.g.::
