@@ -1,0 +1,69 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: ploneng
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: ploneng
+    spec:
+      containers:
+      - name: oauth
+        image: plone/plone.oauth:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 6543
+        env:
+        - name: JWTSECRET
+          value: "secret"
+        - name: LDAP_PROFILE
+          value: '["person","inetOrgPerson"]'
+        - name: LDAP_USER_FILTER
+          value: "mail={username},ou=Users,dc=plone,dc=com"
+        - name: LDAP_ROOT_DN
+          value: "uid=admin,ou=system"
+        - name: LDAP_ROOT_PW
+          value: "secret"
+        - name: LDAP_BASE_DN
+          value: "dc=plone,dc=com"
+      - name: redis
+        image: redis
+        ports:
+        - containerPort: 6379
+      - name: ldap
+        image: greggigon/apacheds
+        ports:
+        - containerPort: 10389
+        volumeMounts:
+        - mountPath: /bootstrap
+          name: ldap-demo
+          readOnly: true
+        env:
+        - name: BOOTSTRAP_FILE
+          value: "/bootstrap/demo.ldif"
+      - name: elasticsearch
+        image: elasticsearch:2.3.3
+        ports:
+        - containerPort: 9200
+      - name: ploneserver
+        image: plone/plone.server:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        env:
+        - name: JWTSECRET
+          value: "secret"
+        - name: JWTALGORITHM
+          value: "HS256"
+        - name: CLIENTID
+          value: "plone"
+        - name: CLIENTPASSWORD
+          value: "plone"
+        - name: OAUTH_PORT
+          value: "6543"
+      volumes:
+      - name: ldap-demo
+        secret:
+          secretName: ldap-demo
